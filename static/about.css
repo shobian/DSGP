@@ -96,7 +96,7 @@ header{
 	margin-top: 50px;
 	background-color: white;
 	border-radius:25px;
-	/* font-family:monospace; */
+	font-family:monospace;
 	margin-bottom: 5px;
 }
 .container img{
@@ -119,9 +119,9 @@ a:-webkit-any-link {
     cursor: pointer;
     font-color:white;
     text-decoration: none;
-   <!-- text-decoration-line: ;
+   /* text-decoration-line: ;
     text-decoration-thickness: ;
-    text-decoration-style: ;-->
+    text-decoration-style: ;*/
     text-decoration-color:white ;
 }
 .get{
@@ -153,31 +153,22 @@ a:-webkit-any-link {
 
 .sign-section h2{
 
-	padding-top: 30px;
 	text-align: center;
-	font-size: 40px;
-	/* font-family:monospace; */
+	font-family:monospace;
 
 }
 .sign-section h5{
     margin: 1px 1px;
 	text-align: center;
-	/* font-family:monospace; */
-	font-size:18px;
+	font-family:monospace;
+	font-size:15px;
 	}
 
 
-.quiz{
-	display: flex;
-	align-items: start;
-	flex-direction: column;
-	margin-left: -180px;
-}
 .form-control{
 
-	width: 150%;
-	margin-top: 10px;
-	margin-bottom: 50px;
+	width: 90%;
+	margin: 15px 10px;
 	padding: 5px;
 	border:none;
 	font-family: monospace;
@@ -206,11 +197,10 @@ input[type=text], input[type=password], input[type=email], input[type=number] {
 }
 
 .btn {
-    border-radius: 20px;
+    border-radius: 25px;
 	display: block;
-	font-size: 20px;
-	margin-left: 255px;
-	padding: 10px 30px;
+	margin: 10px auto;
+	padding: 6px 10px;
 	border: none;
 	text-transform: uppercase;
 	background: #001375;
@@ -222,10 +212,109 @@ input[type=text], input[type=password], input[type=email], input[type=number] {
 .btn:hover{
 
 	cursor: pointer;
-	color:#292929;
-	background: #7dffb8;
+	color:#162938;
 
 }
+
+.footer{
+	height: 900px;
+}
+
+/**************  aligning the boxes div  **************/
+
+.box-1,
+.box-2,
+.box-3,
+.box-4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 50px;
+}
+
+.box-1{
+    margin-top: 130px;
+	padding-top: 50px;
+}
+
+.box-1 h1,.box-3 h1{
+	width: 100%;
+    margin-left: 300px;
+	font-size: 50px;
+	
+}
+
+.box-1 p,.box-3 p{
+	margin-top: 60px;
+	margin-left: -420px;
+	font-size: large;
+	margin-top: 80px;
+   
+}
+.box-3 p{
+	margin-top: 160px;
+	margin-left: -580px;
+}
+
+.box-1 img,.box-3 img{
+	
+    margin-left: 200px;
+	width: 450px;
+	margin-right: 350px;
+}
+
+
+.box-2 h1,.box-4 h1{
+	width: 100%;
+    margin-left: -1000px;
+	font-size: 50px;
+	order: 3;
+}
+.box-2 p,.box-4 p{
+	margin-top: 60px;
+	margin-left: 300px;
+	font-size: large;
+	margin-top: 80px;
+	order: 2;
+}
+.box-2 img,.box-4 img{
+	
+	order: 1;
+	width: 450px;
+	margin-left: 170px;
+    
+}
+
+.box-2 img{
+	margin-top: -120px;
+}
+.box-3 img{
+	margin-top: -120px;
+}
+
+.box-2 p{
+	margin-right: 450px;
+}
+.box-4 p{
+	margin-top: 130px;
+	width: 80%;
+	margin-left: 325px;
+}
+.box-2 h1{
+	margin-right: 470px;
+	padding-bottom: 20px;
+
+}
+.box-4 h1{
+	
+	margin-left: -750px;
+}
+.box-4{
+	padding-top: 20px;
+}
+
+
+/*
 .box-2{
 	background-color: #E2E7FF;
     margin-right:  0px;
@@ -272,9 +361,10 @@ input[type=text], input[type=password], input[type=email], input[type=number] {
 	font-size: 40px;
 
 }
-.footer{
-	height: 900px;
-}
+
+*/
+
+
 
 
 

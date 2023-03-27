@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>Home Page</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+	<link href={{"https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"}} rel="stylesheet">
+</head>
+
+<body>
+    <header id="main-header">
+        <h2 class="logo"><a href="home">TASE</a></h2>
+        <nav class ="navigation">
+<!--            <a href='home'>Home</a>-->
+            <a href='about'>About</a>
+            <a href='contact'>Contact</a>
+            <a href='quiz'>Questionnaire</a>
+            <a class="btnLogin-popup" href='signup'>Sign up</a>
+            <a class="btnLogin-popup" href='login'>Login</a>
+        </nav>
+    </header>
+    <section id="block_1" >
+        <div class="container">
+
+            <h1>Discover the future of your business</h1>
+
+
+
+<!--                    <div class="get">-->
+<!--            <a class ="btnLogin-popup" href="signup">Get Started</a>-->
+<!--        </div>-->
+            <img src="../static/amico%201.png" alt="">
+
+        </div>
+
+        <div class = "box-2">
+           <h1>Revenue,Growth and Success Prediction</h1>
+        </div>
+        <div class = box-3>
+            <img src="../static/Character-holding-tablet-pointing-pie-chart%201.png">
+            <h2>Predicting your future earnings</h2>
+            <p>Our website uses cutting-edge algorithms to analyze data from successful
+                startups and small businesses to predict your future earnings with
+                unprecedented accuracy. Whether you're just starting out or looking to scale
+                your business, our prediction tool can help you make informed decisions for
+                a more successful future..</p>
+
+        </div>
+    </section>
+    <footer class="footer">
+       <!-- <h2>This is the footer</h2>-->
+    </footer>
+
+
+</body>
+</html>
