@@ -1,3 +1,6 @@
+import re
+
+import MySQLdb
 from flask import Flask, render_template, url_for
 from flask import Flask,render_template,request,url_for,session,redirect,flash
 from flask_mysqldb import MySQL
@@ -5,8 +8,16 @@ import numpy as np
 import pickle
 
 app = Flask(__name__)
+app.secret_key = 'xyzsdfg'
 
-profit_model = pickle.load(open("C:/Users/ADMIN/Desktop/IIT/Year 2 sem 2/CM 2603 - Data Science Group Project/DSGP/Final model/Profit prdiction/lin_model.pkl",'rb'))
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'dsgp'
+
+mysql = MySQL(app)
+
+# profit_model = pickle.load(open("C:/Users/ADMIN/Desktop/IIT/Year 2 sem 2/CM 2603 - Data Science Group Project/DSGP/Final model/Profit prdiction/lin_model.pkl",'rb'))
 
 @app.route('/')
 @app.route('/home')
@@ -26,23 +37,6 @@ def contact_page():
 def quiz_page():
     return render_template('quiz.html')
 
-@app.route("/predict", methods=["POST", "GET"])
-def predict():
-    features = [int(request.form['quiz1']), int(request.form['quiz2']), int(request.form['quiz3'])]
-    final_features = [np.array(features)]
-    
-    print(final_features)
-
-    prediction = profit_model.predict(final_features)
-    
-    print(prediction)
-
-    output = "{}".format(prediction)
-    print(output)
-
-    return render_template("quiz.html", pred="{}".format(output))
-
-
 @app.route('/signup')
 def signup_page():
     return render_template('signup.html')
@@ -51,141 +45,57 @@ def signup_page():
 def login_page():
     return render_template('login.html')
 
+@app.route('/login', methods =['GET', 'POST'])
+def login():
+    mesage = ''
+    if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
+        email = request.form['email']
+        password = request.form['password']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM user WHERE email = % s AND password = % s', (email, password, ))
+        user = cursor.fetchone()
+        if user:
+            session['loggedin'] = True
+            session['name'] = user['name']
+            session['email'] = user['email']
+            mesage = 'Logged in successfully !'
+            return render_template('quiz.html', mesage = mesage)
+        else:
+            mesage = 'Please enter correct email / password !'
+    return render_template('login.html', mesage = mesage)
 
 
 
-# app.config["MYSQL_HOST"]="localhost"
-# app.config["MYSQL_USER"]="root"
-# app.config["MYSQL_PASSWORD"]=""
-# app.config["MYSQL_DB"]="registration"
-# app.config["MYSQL_CURSORCLASS"]="DictCursor"
-# mysql=MySQL(app)
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    mesage = ''
+    if request.method == 'POST' and 'name' in request.form and 'email' in request.form and 'age' in request.form and 'companyname' in request.form and 'businessnature' in request.form and 'password' in request.form:
+        name = request.form['name']
+        email = request.form['email']
+        age = request.form['age']
+        companyname = request.form['companyname']
+        businessnature = request.form['businessnature']
+        password = request.form['password']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM user WHERE email = % s', (email,))
+        account = cursor.fetchone()
+        if account:
+            mesage = 'Account already exists !'
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            mesage = 'Invalid email address !'
+        elif not name or not password or not email:
+            mesage = 'Please fill out the form !'
+        else:
 
-# @app.route("/",methods=['GET','POST'])
-# def index():
-#     if 'alogin' in request.form:
-#         if request.method == 'POST':
-#             aname = request.form["aname"]
-#             apass = request.form["apass"]
-#             try:
-#                 cur = mysql.connection.cursor()
-#                 cur.execute("select * from admin where aname=%s and apass=%s", [aname, apass])
-#                 res = cur.fetchone()
-#                 if res:
-#                     session["aname"] = res["aname"]
-#                     session["aid"] = res["aid"]
-#                     return redirect(url_for('admin_home'))
-#                 else:
-#                     return render_template("index.html")
-#             except Exception as e:
-#                 print(e)
-#             finally:
-#                 mysql.connection.commit()
-#                 cur.close()
-#     elif 'register' in request.form:
-#         if request.method == 'POST':
-#             uname = request.form["uname"]
-#             password = request.form["upass"]
-#             age = request.form["age"]
-#             address = request.form["address"]
-#             contact = request.form["contact"]
-#             mail = request.form["mail"]
-#             cur = mysql.connection.cursor()
-#             cur.execute('insert into users (name,password,age,address,contact,mail) values (%s,%s,%s,%s,%s,%s)',
-#                         [uname, password, age, address, contact, mail])
-#             mysql.connection.commit()
-#         return render_template("index.html")
-#
-#     elif 'ulogin' in request.form:
-#         if request.method == 'POST':
-#             name = request.form["uname"]
-#             password = request.form["upass"]
-#             try:
-#                 cur = mysql.connection.cursor()
-#                 cur.execute("select * from users where name=%s and password=%s", [name, password])
-#                 res = cur.fetchone()
-#                 if res:
-#                     session["name"] = res["name"]
-#                     session["pid"] = res["pid"]
-#                     return redirect(url_for('user_home'))
-#                 else:
-#                     return render_template("index.html")
-#             except Exception as e:
-#                 print(e)
-#             finally:
-#                 mysql.connection.commit()
-#                 cur.close()
-#     return render_template("index.html")
-#
-# @app.route("/user_profile")
-# def user_profile():
-#     cur = mysql.connection.cursor()
-#     id=session["pid"]
-#     qry = "select * from users where pid=%s"
-#     cur.execute(qry,[id])
-#     data = cur.fetchone()
-#     cur.close()
-#     count = cur.rowcount
-#     if count == 0:
-#         flash("Users Not Found...!!!!", "danger")
-#     else:
-#         return render_template("user_profile.html",res=data)
-#
-# @app.route("/update_user",methods=['GET','POST'])
-# def update_user():
-#     if request.method == 'POST':
-#         name = request.form['name']
-#         password = request.form['password']
-#         age = request.form['age']
-#         address = request.form['address']
-#         contact = request.form['contact']
-#         mail = request.form['mail']
-#         pid=session["pid"]
-#         cur = mysql.connection.cursor()
-#         cur.execute("update users set name=%s,password=%s,age=%s,address=%s,contact=%s,mail=%s where pid=%s",[name,password,age,address,contact,mail,pid])
-#         mysql.connection.commit()
-#         flash('User Updated Successfully', 'success')
-#         return redirect(url_for('user_profile'))
-#     return render_template("user_profile.html")
-#
-# @app.route("/view_users")
-# def view_users():
-#     cur = mysql.connection.cursor()
-#     qry = "select * from users"
-#     cur.execute(qry)
-#     data = cur.fetchall()
-#     cur.close()
-#     count = cur.rowcount
-#     if count == 0:
-#         flash("Users Not Found...!!!!", "danger")
-#     return render_template("view_users.html",res=data)
-#
-#
-# @app.route("/delete_users/<string:id>", methods=['GET', 'POST'])
-# def delete_users(id):
-#     cur = mysql.connection.cursor()
-#     cur.execute("delete from users where pid=%s", [id])
-#     mysql.connection.commit()
-#     flash("Users Deleted Successfully", "danger")
-#     return redirect(url_for("view_users"))
-#
-# @app.route("/admin_home")
-# def admin_home():
-#     return render_template("admin_home.html")
-#
-# @app.route("/user_home")
-# def user_home():
-# 	return render_template("user_home.html")
-#
-#
-# @app.route("/logout")
-# def logout():
-#     session.clear()
-#     return redirect(url_for("index"))
-#
-# if(__name__=='__main__'):
-#     app.secret_key = '123'
-#     app.run(debug=True)
+            cursor.execute('INSERT INTO user VALUES (%s, % s, % s, % s, % s, % s)', (name, email, age,companyname,businessnature,password,))
+            mysql.connection.commit()
+            mesage = 'You have successfully registered !'
+            return render_template('login.html', mesage=mesage)
+    elif request.method == 'POST':
+        mesage = 'Please fill out the form !'
+
+    return render_template('signup.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
