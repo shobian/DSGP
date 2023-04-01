@@ -28,12 +28,15 @@
 
 		<div class="sign-section">
 
-			<form>
+			<form action="{{ url_for('login') }}" method="POST">
                 <br>
 				<h2>Login</h2>
-				<input type="email" placeholder="Email" class="form-control">
-				<input type="password" placeholder="Password" class="form-control">
-	  			<input type="submit" value="login" class="btn">
+              {% if mesage is defined and mesage %}
+              <div class="alert alert-warning">{{ mesage }}</div>
+            {% endif %}
+				<input type="email" placeholder="Email" class="form-control" name="email">
+				<input type="password" placeholder="Password" class="form-control" name="password">
+	  			<button type="submit" class="btn">Login</button>
 
 
 			</form>
