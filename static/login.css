@@ -170,9 +170,10 @@ a:-webkit-any-link {
 
 .quiz{
 	display: flex;
-	align-items: start;
+	align-items: center;
 	flex-direction: column;
-	margin-left: 60px;
+	/*margin-left: -180px;*/
+	margin-left:50%;
 }
 .form-control{
 
@@ -190,23 +191,14 @@ a:-webkit-any-link {
 
 
 }
-input[type=text], input[type=password], input[type=email]{
-    background:#F2F4FF;
-    height:40px;
-    border-radius:10px;
-    display:flex;
-    text-align:center;
-
-
-
-}
-
-input[type=number] {
+input[type=password], input[type=email]{
     background:#F2F4FF;
     height:40px;
     width:500px;
     border-radius:10px;
+    display:flex;
     text-align:center;
+
 
 
 }
@@ -223,7 +215,7 @@ input[type=number] {
     border-radius: 20px;
 	display: block;
 	font-size: 20px;
-	margin-left: 35%;
+	margin-left: 40%;
 	padding: 10px 30px;
 	border: none;
 	text-transform: uppercase;

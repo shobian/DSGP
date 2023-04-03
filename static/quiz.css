@@ -1,6 +1,5 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-@import: url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
 *{
 	margin:0;
 	padding:0;
@@ -155,6 +154,7 @@ a:-webkit-any-link {
 .sign-section h2{
 
 	padding-top: 30px;
+	margin-left:15%;
 	text-align: center;
 	font-size: 40px;
 	/* font-family:monospace; */
@@ -193,6 +193,7 @@ a:-webkit-any-link {
 input[type=text], input[type=password], input[type=email]{
     background:#F2F4FF;
     height:40px;
+    width:500px;
     border-radius:10px;
     display:flex;
     text-align:center;
@@ -223,7 +224,7 @@ input[type=number] {
     border-radius: 20px;
 	display: block;
 	font-size: 20px;
-	margin-left: 35%;
+	margin-left: 20%;
 	padding: 10px 30px;
 	border: none;
 	text-transform: uppercase;
@@ -289,6 +290,57 @@ input[type=number] {
 .footer{
 	height: 900px;
 }
+    select {
+     -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      appearance: none;
+      outline: 0;
+      box-shadow: none;
+      border: 0 !important;
+      background-image: none;
+      background:#F2F4FF;
+      height:50px;
+      width:500px;
+      border-radius:10px;
+    }
+    /* Remove IE arrow */
+    select::-ms-expand {
+      display: none;
+    }
+    /* Custom Select */
+    .select {
+      position: relative;
+      display: flex;
+      width: 20em;
+      height: 5em;
+      line-height: 3;
+      background: #2c3e50;
+      overflow: hidden;
+      border-radius: .25em;
+
+    }
+    select {
+      flex: 1;
+      padding: 0 .5em;
+
+      cursor: pointer;
+    }
+    /* Arrow */
+    .select::after {
+      content: '\25BC';
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 0 1em;
+      background: #34495e;
+      cursor: pointer;
+      pointer-events: none;
+      -webkit-transition: .25s all ease;
+      -o-transition: .25s all ease;
+      transition: .25s all ease;
+    }
+
 
 
 
