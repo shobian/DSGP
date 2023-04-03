@@ -1,3 +1,99 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+
+<!--<head>-->
+<!--	<meta charset="UTF-8">-->
+<!--	<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--	<meta name="viewport" content="width=device-width,initial-scale=1.0">-->
+<!--	<title>website with log in and registration</title>-->
+<!--	<link rel="stylesheet" href="style.css">-->
+<!--	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='quiz.css') }}">-->
+<!--	<link href={{"https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"}} rel="stylesheet">-->
+<!--</head>-->
+
+<!--<body>-->
+
+<!--<header>-->
+<!--<h2 class="logo"><a href="home">TASE</a></h2>-->
+<!--<nav class ="navigation">-->
+<!--		<a href="home">Home</a>-->
+<!--		<a href="about">About</a>-->
+<!--		<a href="contact">Contact</a>-->
+<!--&lt;!&ndash;		<a href='quiz'>Questionnaire</a>&ndash;&gt;-->
+<!--		<a class="btnLogin-popup" href='signup'>Sign up</a>-->
+<!--		<a class="btnLogin-popup" href="login">Login</a>-->
+<!--</nav>-->
+<!--</header>-->
+<!--	<div class="container">-->
+
+<!--		<div class="sign-section">-->
+
+<!--			<h2>Questionnaire</h2><br>-->
+
+
+<!--			<form action="/predict" method="POST" class="quiz">-->
+<!--				<br>-->
+<!--				<label><h5>R&D Spend</h5></label>-->
+<!--				<input name="quiz1" type="text" placeholder="" class="form-control">-->
+<!--			-->
+<!--				<label><h5>Administration</h5></label>-->
+<!--				<input name="quiz2" type="text" placeholder="" class="form-control">-->
+<!--			-->
+<!--				<label><h5>Marketing Spend</h5></label>-->
+<!--				<input name="quiz3" type="text" placeholder="" class="form-control">-->
+<!--			-->
+<!--				<label><h5>Quiz4</h5></label>-->
+<!--				<input name="quiz4" type="text" placeholder="" class="form-control">-->
+<!--			-->
+<!--				<label><h5>Quiz5</h5></label>-->
+<!--				<input name="quiz5" type="text" placeholder="" class="form-control">-->
+<!--			-->
+<!--				<label><h5>Quiz6</h5></label>-->
+<!--				<input name="quiz6" type="text" placeholder="" class="form-control">-->
+<!--			-->
+<!--				<label><h5>Quiz7</h5></label>-->
+<!--				<input name="quiz7" type="text" placeholder="" class="form-control"><br>-->
+<!--			-->
+<!--				<input type="submit" value="Predict" class="btn">-->
+<!--			</form>-->
+<!--			-->
+<!--            <br>-->
+<!--			<script>console.log(document.getElementById("getValues").value)</script>-->
+
+<!--			<h4 align="center">{{pred}}</h4>-->
+
+
+<!--		</div>-->
+
+
+<!--	</div>-->
+
+
+
+
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +103,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<title>website with log in and registration</title>
 	<link rel="stylesheet" href="style.css">
-	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='quiz.css') }}">
 	<link href={{"https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"}} rel="stylesheet">
 </head>
 
@@ -34,34 +130,60 @@
 			<form action="/predict" method="POST" class="quiz">
 				<br>
 				<label><h5>R&D Spend (USD)</h5></label>
-				<input name="quiz1" type="text" placeholder="" class="form-control">
-			
-				<label><h5>Administration (USD)</h5></label>
-				<input name="quiz2" type="text" placeholder="" class="form-control">
-			
-				<label><h5>Marketing Spend (USD)</h5></label>
-				<input name="quiz3" type="text" placeholder="" class="form-control">
+				<input name="quiz1" type="text" placeholder="" class="form-control" required>
 
-				<br><br><br>
-				
+				<label><h5>Administration (USD)</h5></label>
+				<input name="quiz2" type="text" placeholder="" class="form-control" required>
+
+				<label><h5>Marketing Spend (USD)</h5></label>
+				<input name="quiz3" type="text" placeholder="" class="form-control" required>
+
 				<label><h5>Total Funding (USD)</h5></label>
-				<input name="quiz4" type="text" placeholder="" class="form-control">
-			
+				<input name="quiz4" type="text" placeholder="" class="form-control" required>
+
 				<label><h5>Funding Rounds</h5></label>
-				<input name="quiz5" type="text" placeholder="" class="form-control">
-			
+				<input name="quiz5" type="text" placeholder="" class="form-control" required>
+
 				<label><h5>Funding Duration (Days)</h5></label>
-				<input name="quiz6" type="text" placeholder="" class="form-control">
-			
+				<input name="quiz6" type="text" placeholder="" class="form-control" required>
+
 				<label><h5>Category</h5></label>
-				<input name="quiz7" type="text" placeholder="" class="form-control">
+				<br>
+				  <select name="Category" id="category" required>
+					<option value="SOFTWARE">SOFTWARE</option>
+					<option value="FOOD">FOOD</option>
+					<option value="EDUCATION">EDUCATION</option>
+					<option value="SERVICE">SERVICE</option>
+				  </select>
+					<br>
 
 				<label><h5>Country Code</h5></label>
-				<input name="quiz8" type="text" placeholder="" class="form-control"><br>
-			
+								<br>
+				  <select name="Country code" id="countrtycode" required>
+					<option value="AUS">AUSTRALIYA</option>
+					<option value="BRA">BRAZIL</option>
+					<option value="CAN">CANADA</option>
+					<option value="FRA">FRANCE</option>
+					<option value="GBR">UNITED KINGDOM</option>
+					<option value="HKG">HONG KONG</option>
+					<option value="IND">INDIA</option>
+					<option value="ITA">ITALY</option>
+					<option value="JPN">JAPAN</option>
+					<option value="LKA">LKA</option>
+					<option value="MEX">MEXICO</option>
+					<option value="MYS">MYS</option>
+					<option value="NZL">NEWZEALAND</option>
+					<option value="PAK">PAKISTAN</option>
+					<option value="QAT">QATAR</option>
+					<option value="SAU">SAUDI ARABIA</option>
+					<option value="SGP">SINGAPORE</option>
+					<option value="USA">USA</option>
+				  </select>
+					<br>
+
 				<input type="submit" value="Predict Success Rate" class="btn">
 			</form>
-			
+
             <br>
 			<script>console.log(document.getElementById("getValues").value)</script>
 

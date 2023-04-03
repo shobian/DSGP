@@ -17,7 +17,7 @@
 <h2 class="logo"><a href="home">TASE</a></h2>
 <nav class ="navigation">
 		<a href="home">Home</a>
-		<a href="aboutus">About</a>
+		<a href="about">About</a>
 		<a href="contact">Contact</a>
 		<a class="btnLogin-popup" href="login">Login</a>
 </nav>
@@ -29,6 +29,7 @@
 			<form action="{{ url_for('register') }}" method="post">
                 <br>
 				<h2>Sign Up</h2>
+				<br>
               {% if mesage is defined and mesage %}
               <div class="alert alert-warning">{{ mesage }}</div>
             {% endif %}
