@@ -224,7 +224,7 @@ input[type=number] {
     border-radius: 20px;
 	display: block;
 	font-size: 20px;
-	margin-left: 20%;
+	margin-left: 35%;
 	padding: 10px 30px;
 	border: none;
 	text-transform: uppercase;
@@ -340,6 +340,41 @@ input[type=number] {
       -o-transition: .25s all ease;
       transition: .25s all ease;
     }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background:#F2F4FF;
+
+}
+
+th, td {
+  font-color:black;
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  background:#F2F4FF;
+}
+
+th {
+  background:#001375;
+  color: white;
+
+}
+td {
+  background:#F2F4FF;
+  color: black;
+}
+
+.sign-section h2{
+    align:center;
+	display: flex;
+	font-size: 40px;
+	right: 50%;
+	margin-top: 0px;
+	line-height: 1em;
+
+}
 
 
 
