@@ -17,7 +17,6 @@ app.config['MYSQL_DB'] = 'dsgp'
 
 mysql = MySQL(app)
 
-# profit_model = pickle.load(open("C:/Users/ADMIN/Desktop/IIT/Year 2 sem 2/CM 2603 - Data Science Group Project/DSGP/Final model/Profit prdiction/lin_model.pkl",'rb'))
 
 @app.route('/')
 @app.route('/home')
@@ -44,6 +43,10 @@ def signup_page():
 @app.route('/login')
 def login_page():
     return render_template('login.html')
+
+@app.route('/results')
+def results_page():
+    return render_template('results.html')
 
 @app.route('/login', methods =['GET', 'POST'])
 def login():
@@ -95,7 +98,22 @@ def register():
         mesage = 'Please fill out the form !'
 
     return render_template('signup.html')
+# @app.route('/predict', methods=['GET', 'POST'])
+# def predict():
+#      return render_template('results.html')
+
+@app.route('/add', methods=['POST'])
+def add():
+    randdspend = request.form['randdspend']
+    administration = request.form['administration']
+    marketingspend = request.form['marketingspend']
+    totalfunding = request.form['totalfunding']
+    fundingrounds = request.form['fundingrounds']
+    fundingduration = request.form['fundingduration']
+    category = request.form['category']
+    countrycode = request.form['countrycode']
 
 
+    return render_template('results.html', randdspend=randdspend, administration=administration, marketingspend=marketingspend, totalfunding=totalfunding,fundingrounds=fundingrounds,fundingduration=fundingduration,category=category,countrycode=countrycode)
 if __name__ == "__main__":
     app.run(debug=True)
