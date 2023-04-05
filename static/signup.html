@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>website with log in and registration</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+	<link href={{"https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"}} rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+<h2 class="logo"><a href="home">TASE</a></h2>
+<nav class ="navigation">
+		<a href="home">Home</a>
+		<a href="about">About</a>
+		<a href="contact">Contact</a>
+		<a class="btnLogin-popup" href="login">Login</a>
+</nav>
+</header>
+	<div class="container">
+
+		<div class="sign-section">
+
+			<form action="{{ url_for('register') }}" method="post">
+                <br>
+				<h2>Sign Up</h2>
+				<br>
+              {% if mesage is defined and mesage %}
+              <div class="alert alert-warning">{{ mesage }}</div>
+            {% endif %}
+				<label>Name</label>
+				<input type="text" placeholder="" class="form-control" name="name" required>
+				<label>Email</label>
+				<input type="email" placeholder="" class="form-control" name="email" required>
+				<label>Age</label>
+				<input type="number" placeholder="" class="form-control" name="age" required>
+				<label>Company Name</label>
+				<input type="text" placeholder="" class="form-control" name="companyname" required>
+				<label>Business Nature</label>
+				<input type="text" placeholder="" class="form-control" name="businessnature" required>
+				<label>Password</label>
+				<input type="password" placeholder="" class="form-control" name="password" required>
+
+
+
+				<button type="submit" class="btn">Register</button>
+
+
+			</form>
+            <br>
+
+
+		</div>
+
+
+	</div>
+
+
+
+
+</body>
+</html>
+
+
+
+
