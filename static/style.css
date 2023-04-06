@@ -190,9 +190,10 @@ a:-webkit-any-link {
 
 
 }
-input[type=text], input[type=password], input[type=email]{
+input[type=text], input[type=password], input[type=email],input[type=number]{
     background:#F2F4FF;
     height:40px;
+    width:500px;
     border-radius:10px;
     display:flex;
     text-align:center;
@@ -201,15 +202,7 @@ input[type=text], input[type=password], input[type=email]{
 
 }
 
-input[type=number] {
-    background:#F2F4FF;
-    height:40px;
-    width:500px;
-    border-radius:10px;
-    text-align:center;
 
-
-}
 
 
 .terms{
@@ -289,6 +282,7 @@ input[type=number] {
 .footer{
 	height: 900px;
 }
+
 
 
 

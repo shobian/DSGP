@@ -17,177 +17,45 @@
 <nav class ="navigation">
 		<a href="home">Home</a>
 		<a href="about">About</a>
-		<a href="contact">Contact</a>
 		<a href='quiz'>Questionnaire</a>
 
 </nav>
 </header>
-	<div class="container">
 
-		<div class="sign-section">
-
-			<h2>Questionnaire</h2><br>
-
-
-			<form onsubmit="return addData()">
-				<br>
-				<label><h5>R&D Spend (USD)</h5></label>
-				<input name="quiz1" id="randdspend" type="text" placeholder="" class="form-control" required>
-
-				<label><h5>Administration (USD)</h5></label>
-				<input name="quiz2" id="administration" type="text" placeholder="" class="form-control" required>
-
-				<label><h5>Marketing Spend (USD)</h5></label>
-				<input name="quiz3" type="text" id="marketingspend" placeholder="" class="form-control" required>
-
-				<label><h5>Total Funding (USD)</h5></label>
-				<input name="quiz4" type="text" id="totalfunding" placeholder="" class="form-control" required>
-
-				<label><h5>Funding Rounds</h5></label>
-				<input name="quiz5" type="text" id="fundingrounds" placeholder="" class="form-control" required>
-
-				<label><h5>Funding Duration (Days)</h5></label>
-				<input name="quiz6" type="text" id="fundingduration" placeholder="" class="form-control" required>
-
-				<label><h5>Category</h5></label>
-
-				<br>
-				  <select name="Category" id="category" required>
-					<option value="SOFTWARE">SOFTWARE</option>
-					<option value="FOOD">FOOD</option>
-					<option value="EDUCATION">EDUCATION</option>
-					<option value="SERVICE">SERVICE</option>
-				  </select>
-					<br>
-
-				<label><h5>Country Code</h5></label>
-
-								<br>
-				  <select name="Countrycode" id="countrycode" required>
-					<option value="AUS">AUSTRALIA</option>
-					<option value="BRA">BRAZIL</option>
-					<option value="CAN">CANADA</option>
-					<option value="FRA">FRANCE</option>
-					<option value="GBR">UNITED KINGDOM</option>
-					<option value="HKG">HONG KONG</option>
-					<option value="IND">INDIA</option>
-					<option value="ITA">ITALY</option>
-					<option value="JPN">JAPAN</option>
-					<option value="LKA">SRI LANKA</option>
-					<option value="MEX">MEXICO</option>
-					<option value="MYS">MALAYSIA</option>
-					<option value="NZL">NEW ZEALAND</option>
-					<option value="PAK">PAKISTAN</option>
-					<option value="QAT">QATAR</option>
-					<option value="SAU">SAUDI ARABIA</option>
-					<option value="SGP">SINGAPORE</option>
-					<option value="USA">USA</option>
-				  </select>
-					<br>
-				<br>
-
-<!--				<input type="submit" value="Predict Success Rate" class="btn">-->
-<!--				<button value="Add Data" type="submit" class="btn" id="submitBtn">PREDICT</button>-->
-<!--				<input type="submit" value="submit" id="submitBtn">-->
-				<input type="submit" value="Add Data">
-
-			</form>
-
-
-<!--			<script>console.log(document.getElementById("getValues").value)</script>-->
-
-<!--			<h4 align="center">Profit predicted - USD {{pred}}</h4>-->
-<!--			<h4 align="center">Sucess Rate predicted {{pred1}}</h4>-->
-
-
-		</div>
-
-
-	</div>
 <div class="container">
+        <table>
+      <thead>
+        <tr>
+          <th>R&D SPEND (USD)</th>
+          <th>ADMINISTRATION (USD)</th>
+          <th>MARKETINGSPEND (USD)</th>
+          <th>TOTAL FUNDING (USD)</th>
+          <th>FUNDING ROUNDS</th>
+          <th>FUNDING DURATION (DAYS)</th>
+          <th>CATEGORY</th>
+          <th>COUNTRY</th>
+          <th>PREDICTION</th>
+          <th>PROFIT RANGE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ randdspend }}</td>
+          <td>{{ administration }}</td>
+          <td>{{ marketingspend }}</td>
+          <td>{{ totalfunding }}</td>
+          <td>{{ fundingrounds }}</td>
+          <td>{{ fundingduration }}</td>
+          <td>{{ category }}</td>
+          <td>{{ countrycode }}</td>
+          <td>{{ Prediction }}</td>
+          <td>{{ Profit }}</td>
 
-        <table id="data-table">
-          <thead>
-
-          <tr>
-
-              <th>R&D SPEND (USD)</th>
-              <th>ADMINISTRATION (USD)</th>
-              <th>MARKETING SPEND (USD)</th>
-              <th>TOTAL FUNDING (USD)</th>
-              <th>FUNDING ROUNDS</th>
-              <th>FUNDING DURATION (DAYS)</th>
-              <th>CATEGORY</th>
-              <th>COUNTRY</th>
-              <th>SUCCESS</th>
-              <th>EXPECTABLE PROFIT</th>
-              </tr>
-
-
-          </thead>
-          <tbody>
-          </tbody>
-              </table>
-
+        </tr>
+      </tbody>
+    </table>
 
 	</div>
-
-
-
-<script>
-
-function addData(){
-  var randdspend = document.getElementById("randdspend").value;
-  var administration = document.getElementById("administration").value;
-  var marketingspend = document.getElementById("marketingspend").value;
-  var totalfunding = document.getElementById("totalfunding").value;
-  var fundingrounds = document.getElementById("fundingrounds").value;
-  var fundinduration = document.getElementById("fundingduration").value;
-  var category = document.getElementById("category").value;
-  var countrycode = document.getElementById("countrycode").value;
-
-  var table = document.getElementById("data-table").getElementsByTagName("tbody")[0];
-
-  var row = table.insertRow(table.length);
-
-
-  var cell1 = row.insertCell(0);
-  var cell2 =  row.insertCell(1);
-  var cell3 =  row.insertCell(2);
-  var cell4 =  row.insertCell(3);
-  var cell5 =  row.insertCell(4);
-  var cell6 =  row.insertCell(5);
-  var cell7 =  row.insertCell(6);
-  var cell8 =  row.insertCell(7);
-
-  cell1.innerHTML = randdspend;
-  cell2.innerHTML = administration;
-  cell3.innerHTML = marketingspend;
-  cell4.innerHTML = totalfunding;
-  cell5.innerHTML = fundingrounds;
-  cell6.innerHTML = findingduration;
-  cell7.innerHTML = category;
-  cell8.innerHTML = countrycode;
-
-
-    // Clear form inputs
-  document.getElementById("randdspend").value = "";
-  document.getElementById("administration").value = "";
-  document.getElementById("marketingspend").value = "";
-  document.getElementById("totalfunding").value = "";
-  document.getElementById("fundingrounds").value = "";
-  document.getElementById("fundingduration").value = "";
-  document.getElementById("category").value = "";
-  document.getElementById("countrycode").value = "";
-
-
-  // Prevent form from submitting and refreshing the page
-  return false;
-
-}
-
-</script>
-
 
 </body>
 
