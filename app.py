@@ -17,6 +17,8 @@ app.config['MYSQL_DB'] = 'dsgp'
 
 mysql = MySQL(app)
 
+profit_model = pickle.load(open("C:/Users/ADMIN/Desktop/IIT/Year 2 sem 2/CM 2603 - Data Science Group Project/DSGP/Final model/Profit prdiction/lin_model.pkl",'rb'))
+success_model = pickle.load(open("C:/Users/ADMIN/Desktop/IIT/Year 2 sem 2/CM 2603 - Data Science Group Project/DSGP/Final model/Sucess prediction/Sucess_model.pkl",'rb'))
 
 @app.route('/')
 @app.route('/home')
@@ -36,17 +38,73 @@ def contact_page():
 def quiz_page():
     return render_template('quiz.html')
 
+@app.route("/predict", methods=["POST", "GET"])
+def predict():
+    profit_features = [int(request.form['randdspend']), int(request.form['administration']), int(request.form['marketingspend'])]
+    final_features = [np.array(profit_features)]
+
+    success_features = [int(request.form['totalfunding']), int(request.form['fundingrounds']), int(request.form['fundingduration']), int(request.form['category']), int(request.form['countrycode'])]
+    final_features1 = [np.array(success_features)]
+
+    print(final_features)
+    print(final_features1)
+
+    prediction = profit_model.predict(final_features)
+    success_prediction = success_model.predict(final_features1)
+    
+    print(prediction)
+    print(success_prediction)
+
+    output = "{}".format(prediction)
+    output1 = "{}".format(success_prediction)
+    print(output)
+    print(output1)
+
+        
+    randdspend = request.form['randdspend']
+    administration = request.form['administration']
+    marketingspend = request.form['marketingspend']
+    totalfunding = request.form['totalfunding']
+    fundingrounds = request.form['fundingrounds']
+    fundingduration = request.form['fundingduration']
+    category = request.form['category']
+    countrycode = request.form['countrycode']
+    Prediction = output
+    
+
+    if str(output1) == "[1]":
+        Profit = " Busines will successed"
+        
+    else:
+        Profit = "Busines most likelyto fail"
+        
+        
+    return render_template('results.html', randdspend=randdspend, administration=administration, marketingspend=marketingspend, totalfunding=totalfunding,fundingrounds=fundingrounds,fundingduration=fundingduration,category=category,countrycode=countrycode,Prediction=Prediction,Profit=Profit)
+
+  
+
+    return render_template("quiz.html", pred="{}".format( output))
+
+    
+
+          
+    
+    
+
+
 @app.route('/signup')
 def signup_page():
     return render_template('signup.html')
 
+@app.route('/results')
+def result_page():
+    return render_template('results.html')
+
+
+
 @app.route('/login')
 def login_page():
     return render_template('login.html')
-
-@app.route('/results')
-def results_page():
-    return render_template('results.html')
 
 @app.route('/login', methods =['GET', 'POST'])
 def login():
@@ -98,22 +156,7 @@ def register():
         mesage = 'Please fill out the form !'
 
     return render_template('signup.html')
-# @app.route('/predict', methods=['GET', 'POST'])
-# def predict():
-#      return render_template('results.html')
-
-@app.route('/add', methods=['POST'])
-def add():
-    randdspend = request.form['randdspend']
-    administration = request.form['administration']
-    marketingspend = request.form['marketingspend']
-    totalfunding = request.form['totalfunding']
-    fundingrounds = request.form['fundingrounds']
-    fundingduration = request.form['fundingduration']
-    category = request.form['category']
-    countrycode = request.form['countrycode']
 
 
-    return render_template('results.html', randdspend=randdspend, administration=administration, marketingspend=marketingspend, totalfunding=totalfunding,fundingrounds=fundingrounds,fundingduration=fundingduration,category=category,countrycode=countrycode)
 if __name__ == "__main__":
     app.run(debug=True)
