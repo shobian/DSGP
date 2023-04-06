@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 	<head>
@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1.0">
 		<title>Contact Us</title>
 		<link rel="stylesheet" href="style.css">
-		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='contact.css') }}">
 		<link href={{"https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"}} rel="stylesheet">
 	</head>
 
@@ -18,11 +18,25 @@
 		<nav class ="navigation">
 				<a href="home">Home</a>
 				<a href="about">About</a>
-				<a href="">Contact</a>
-<!--				<a href="quiz">Questionnaire</a>-->
 				<a class="btnLogin-popup" href='signup'>Sign up</a>
 				<a class="btnLogin-popup" href="login">Login</a>
 		</nav>
 		</header>
+		<div class="container">
+
+		<div class="sign-section">
+<form action="home">
+			<h2>Feedback Form</h2>
+			<br>
+				<label>Email</label>
+				<input type="email" placeholder="Enter your Email here" class="form-control" name="email" required>
+
+				<label>Comments</label>
+				<input type="text" placeholder="Enter your Feedback here" class="form-control" name="comments" required>
+
+				<button type="submit" class="btn">Submit</button>
+</form>
+		</div>
+		</div>
 	</body>
 </html>
