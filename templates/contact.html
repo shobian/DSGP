@@ -25,16 +25,18 @@
 		<div class="container">
 
 		<div class="sign-section">
-<form action="home">
+<form action="{{ url_for('feedback_submit') }}" method="post">
 			<h2>Feedback Form</h2>
+
 			<br>
 				<label>Email</label>
 				<input type="email" placeholder="Enter your Email here" class="form-control" name="email" required>
 
 				<label>Comments</label>
-				<input type="text" placeholder="Enter your Feedback here" class="form-control" name="comments" required>
+				<input type="text" placeholder="Enter your Feedback here" class="form-control" name="feedback" required>
 
 				<button type="submit" class="btn">Submit</button>
+
 </form>
 		</div>
 		</div>
