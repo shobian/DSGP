@@ -82,6 +82,7 @@ def predict():
     num_list = eval(Profit)  # convert the string to a list
     num_str = num_list[0]  # extract the string element from the list
     float_num = float(num_str)
+    float_num = round(float_num, 1)
 
     given_value = float_num
     ten_percent = (10 / 100) * given_value
@@ -224,6 +225,22 @@ def register():
 
     return render_template('signup.html')
 
+
+@app.route('/feedback_submit', methods=['POST'])
+def feedback_submit():
+    # Get form data
+    email = request.form['email']
+    feedback = request.form['feedback']
+
+    # Insert data into the feedback table
+    cur = mysql.connection.cursor()
+    query = "INSERT INTO feedbacktable (email,feedback) VALUES (%s, %s)"
+    cur.execute(query, (email, feedback))
+    mysql.connection.commit()
+
+    # Close the database connection
+    cur.close()
+    return render_template('home.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
