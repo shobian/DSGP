@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<title>website with log in and registration</title>
-	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='quiz.css') }}">
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='results.css') }}">
 	<link href={{"https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"}} rel="stylesheet">
 </head>
 
@@ -21,7 +21,8 @@
 
 </nav>
 </header>
-
+<div class="box-2">
+    <h2>Prediction Results</h2>
 <div class="container">
         <table>
       <thead>
@@ -29,13 +30,14 @@
           <th>R&D SPEND (USD)</th>
           <th>ADMINISTRATION (USD)</th>
           <th>MARKETINGSPEND (USD)</th>
+
           <th>TOTAL FUNDING (USD)</th>
           <th>FUNDING ROUNDS</th>
           <th>FUNDING DURATION (DAYS)</th>
           <th>CATEGORY</th>
           <th>COUNTRY</th>
           <th>PREDICTION</th>
-          <th>PROFIT RANGE</th>
+          <th>PROFIT RANGE(USD)</th>
         </tr>
       </thead>
       <tbody>
@@ -56,6 +58,7 @@
     </table>
 
 	</div>
+</div>
 
 </body>
 
